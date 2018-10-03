@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Description
 
 # Usage
@@ -13,3 +14,6 @@ To run all benchmarks, launch the bash script.
 ## Consulting benchmark
 To consult a single benchmark. In the terminal:
 `python -m perf stats bench.json`
+=======
+# xclim-benchmark
+>>>>>>> 0b963e0c3ac0c485ced9befffdf543635767f279
