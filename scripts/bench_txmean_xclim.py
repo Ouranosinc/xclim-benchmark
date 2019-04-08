@@ -24,6 +24,9 @@ import xarray as xr
 
 def func():
     files = '/media/proy/HDD500GB/DATA/CMIP5/tasmax_day_MIROC5_historical_r1i1p1_19500101-19591231.nc'
+    files = []
+    files.append('/media/proy/HDD500GB/DATA/Subsets/NRCAN/nrcan_canada_daily_pr_1961_subset.nc')
+    files.append('/media/proy/HDD500GB/DATA/Subsets/NRCAN/nrcan_canada_daily_pr_1962_subset.nc')
     # files = "/media/proy/HDD500GB/DATA/CMIP5/tasmax_day_MIROC5_historical_r1i1p1_19500101-19591231.nc"
     # files = []
     # files.append('/media/proy/HDD500GB/DATA/CMIP5/tasmax_day_MIROC5_historical_r1i1p1_19500101-19591231.nc')
@@ -32,7 +35,7 @@ def func():
     dataset = xr.open_dataset(files)
     # dataset = xr.open_mfdataset(files)
 
-    tasmax = dataset['tasmax']
+    tasmax = dataset['tasmax'][:, i, j]
 
     TG = xc.indices.tx_mean(tasmax)
 
