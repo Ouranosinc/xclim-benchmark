@@ -1,5 +1,6 @@
 ## Description
 
+Benchmarks for `xclim` using the [`pyperf`](https://pyperf.readthedocs.io/en/latest/) package.
 # Usage
 ## Running benchmarks
 
@@ -7,7 +8,7 @@
 
 To run a single benchmark. In the terminal, the folowing will run the benchmark for xclim and indice `tx_mean`.
 
-`python2 bench_xclim.py -o ./output/bench_xclim.json`
+`python bench_xclim.py -o ./output/bench_xclim.json`
 
 ### All benchmark
 
@@ -17,4 +18,4 @@ To run all benchmarks, launch the bash script.
 
 To consult a single benchmark. In the terminal:
 
-`python -m perf stats bench.json`
+`python -m pyperf stats bench.json`
