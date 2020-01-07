@@ -1,5 +1,5 @@
 # Imports
-import perf
+import pyperf as perf
 import icclim
 
 def func():

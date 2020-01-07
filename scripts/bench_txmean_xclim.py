@@ -1,5 +1,5 @@
 
-import perf
+import pyperf as perf
 import time
 import xclim as xc
 import xarray as xr
