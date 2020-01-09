@@ -126,6 +126,41 @@ def ensemble_percs_rechunk(ds, ps):
     return ds_out
 
 
+def ensemble_percs_smartrechunk(ds, ps):
+    ds_out = ds.drop_vars(ds.data_vars)
+    for v in ds.data_vars:
+        for p in ps:
+            if len(ds.chunks.get('realization', [])) > 1:
+                nChks = None
+                maxSize = 0
+                dimMax = None
+                for dim, chks in ds.chunks.items():
+                    if dim != 'realization':
+                        if maxSize < max(chks):
+                            maxSize = max(chks)
+                            dimMax = dim
+                            nChks = len(chks)
+                print(f"Rechunking {dimMax} from {ds.chunks[dimMax]} to {nChks} * {len(ds.chunks['realization'])}")
+                var = ds[v].chunk({'realization': -1, dimMax: nChks * len(ds.chunks['realization'])})
+            else:
+                var = ds[v]
+            perc = xr.apply_ufunc(
+                _calc_perc,
+                var,
+                input_core_dims=[['realization']],
+                output_core_dims=[[]],
+                keep_attrs=True,
+                kwargs=dict(p=p),
+                dask='parallelized',
+                output_dtypes=[ds[v].dtype]
+            )
+
+            perc.name = v + f'_{p:02d}'
+            perc.attrs.update(description=f'{p:02d}th percentile of ensemble')
+            ds_out[perc.name] = perc
+    return ds_out
+
+
 def exp_xrapply(ds, percentiles):
     return ensemble_percs(ds, percentiles)
 
@@ -136,6 +171,10 @@ def exp_xrnanapply(ds, percentiles):
 
 def exp_xrapplyrechunk(ds, percentiles):
     return ensemble_percs_rechunk(ds, percentiles)
+
+
+def exp_xrapplyrechunksmart(ds, percentiles):
+    return ensemble_percs_smartrechunk(ds, percentiles)
 
 
 def exp_xrrednan(ds, percentiles):
