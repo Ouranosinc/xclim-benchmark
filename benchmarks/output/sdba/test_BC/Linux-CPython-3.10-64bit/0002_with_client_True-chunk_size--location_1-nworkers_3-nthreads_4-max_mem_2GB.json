@@ -28,13 +28,13 @@
             "vendor_id_raw": "GenuineIntel",
             "brand_raw": "Intel(R) Core(TM) i9-10885H CPU @ 2.40GHz",
             "hz_advertised_friendly": "2.4000 GHz",
-            "hz_actual_friendly": "1.1000 GHz",
+            "hz_actual_friendly": "2.4002 GHz",
             "hz_advertised": [
                 2400000000,
                 0
             ],
             "hz_actual": [
-                1099993000,
+                2400166000,
                 0
             ],
             "stepping": 2,
@@ -175,9 +175,9 @@
         }
     },
     "commit_info": {
-        "id": "72fbb5db0cd29df6f263c536529fe815ac3cca48",
-        "time": "2020-01-17T09:36:08-05:00",
-        "author_time": "2020-01-17T09:36:08-05:00",
+        "id": "fa0a06e2c185b027b6511b07de6e26853cddc80f",
+        "time": "2024-03-18T14:06:19-04:00",
+        "author_time": "2024-03-18T14:06:19-04:00",
         "dirty": true,
         "project": "xclim-benchmark",
         "branch": "pytest-benchmark"
@@ -185,10 +185,12 @@
     "benchmarks": [
         {
             "group": null,
-            "name": "test_hot_spell_length",
-            "fullname": "test_indices.py::test_hot_spell_length",
-            "params": null,
-            "param": null,
+            "name": "test_eqm[20]",
+            "fullname": "sdba/test_BC.py::test_eqm[20]",
+            "params": {
+                "nquantiles": 20
+            },
+            "param": "20",
             "extra_info": {},
             "options": {
                 "disable_gc": false,
@@ -199,33 +201,107 @@
                 "warmup": false
             },
             "stats": {
-                "min": 0.3956887540007301,
-                "max": 0.44809541200083913,
-                "mean": 0.41915174259920607,
-                "stddev": 0.019007440481232336,
+                "min": 1.9038739680036088,
+                "max": 2.14961576800124,
+                "mean": 2.06020339000097,
+                "stddev": 0.10375056849984918,
                 "rounds": 5,
-                "median": 0.4178698759969848,
-                "iqr": 0.020328578249063867,
-                "q1": 0.4080979832497178,
-                "q3": 0.42842656149878167,
+                "median": 2.1190979550010525,
+                "iqr": 0.15094983024755493,
+                "q1": 1.9793722740014346,
+                "q3": 2.1303221042489895,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 1.9038739680036088,
+                "hd15iqr": 2.14961576800124,
+                "ops": 0.4853889692898375,
+                "total": 10.30101695000485,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_eqm[50]",
+            "fullname": "sdba/test_BC.py::test_eqm[50]",
+            "params": {
+                "nquantiles": 50
+            },
+            "param": "50",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.7500273450059467,
+                "max": 2.164131516998168,
+                "mean": 2.0063786601996982,
+                "stddev": 0.17071505123734831,
+                "rounds": 5,
+                "median": 2.08254590100114,
+                "iqr": 0.25322396099545585,
+                "q1": 1.8758535790002497,
+                "q3": 2.1290775399957056,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 1.7500273450059467,
+                "hd15iqr": 2.164131516998168,
+                "ops": 0.49841040469423076,
+                "total": 10.03189330099849,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_qdm[20]",
+            "fullname": "sdba/test_BC.py::test_qdm[20]",
+            "params": {
+                "nquantiles": 20
+            },
+            "param": "20",
+            "extra_info": {},
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 5,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.9334585169999627,
+                "max": 2.240769812000508,
+                "mean": 2.073495271199499,
+                "stddev": 0.12563335253881014,
+                "rounds": 5,
+                "median": 2.0708119139962946,
+                "iqr": 0.2077462569995987,
+                "q1": 1.9638189550005336,
+                "q3": 2.1715652120001323,
                 "iqr_outliers": 0,
                 "stddev_outliers": 2,
                 "outliers": "2;0",
-                "ld15iqr": 0.3956887540007301,
-                "hd15iqr": 0.44809541200083913,
-                "ops": 2.3857708280034577,
-                "total": 2.0957587129960302,
+                "ld15iqr": 1.9334585169999627,
+                "hd15iqr": 2.240769812000508,
+                "ops": 0.48227744422176017,
+                "total": 10.367476355997496,
                 "iterations": 1
             }
         },
         {
             "group": null,
-            "name": "test_liquid_precip_ratio[D]",
-            "fullname": "test_indices.py::test_liquid_precip_ratio[D]",
+            "name": "test_qdm[50]",
+            "fullname": "sdba/test_BC.py::test_qdm[50]",
             "params": {
-                "freq": "D"
+                "nquantiles": 50
             },
-            "param": "D",
+            "param": "50",
             "extra_info": {},
             "options": {
                 "disable_gc": false,
@@ -236,100 +312,26 @@
                 "warmup": false
             },
             "stats": {
-                "min": 0.11328287599826581,
-                "max": 0.13918700100111892,
-                "mean": 0.12059448860018165,
-                "stddev": 0.010519721423500394,
+                "min": 1.9428480770002352,
+                "max": 2.0595883399946615,
+                "mean": 2.017097242400632,
+                "stddev": 0.04517019393225206,
                 "rounds": 5,
-                "median": 0.11697612300122273,
-                "iqr": 0.007571737000034773,
-                "q1": 0.1153452822500185,
-                "q3": 0.12291701925005327,
-                "iqr_outliers": 1,
-                "stddev_outliers": 1,
-                "outliers": "1;1",
-                "ld15iqr": 0.11328287599826581,
-                "hd15iqr": 0.13918700100111892,
-                "ops": 8.292252918086454,
-                "total": 0.6029724430009082,
-                "iterations": 1
-            }
-        },
-        {
-            "group": null,
-            "name": "test_liquid_precip_ratio[MS]",
-            "fullname": "test_indices.py::test_liquid_precip_ratio[MS]",
-            "params": {
-                "freq": "MS"
-            },
-            "param": "MS",
-            "extra_info": {},
-            "options": {
-                "disable_gc": false,
-                "timer": "perf_counter",
-                "min_rounds": 5,
-                "max_time": 1.0,
-                "min_time": 5e-06,
-                "warmup": false
-            },
-            "stats": {
-                "min": 0.12894719900214113,
-                "max": 0.2346378789989103,
-                "mean": 0.15236315837501024,
-                "stddev": 0.03543027246873947,
-                "rounds": 8,
-                "median": 0.13658564249999472,
-                "iqr": 0.02651728500313766,
-                "q1": 0.13227858349819144,
-                "q3": 0.1587958685013291,
-                "iqr_outliers": 1,
-                "stddev_outliers": 1,
-                "outliers": "1;1",
-                "ld15iqr": 0.12894719900214113,
-                "hd15iqr": 0.2346378789989103,
-                "ops": 6.563266413385235,
-                "total": 1.218905267000082,
-                "iterations": 1
-            }
-        },
-        {
-            "group": null,
-            "name": "test_liquid_precip_ratio[YS]",
-            "fullname": "test_indices.py::test_liquid_precip_ratio[YS]",
-            "params": {
-                "freq": "YS"
-            },
-            "param": "YS",
-            "extra_info": {},
-            "options": {
-                "disable_gc": false,
-                "timer": "perf_counter",
-                "min_rounds": 5,
-                "max_time": 1.0,
-                "min_time": 5e-06,
-                "warmup": false
-            },
-            "stats": {
-                "min": 0.10082771999805118,
-                "max": 0.13936052600183757,
-                "mean": 0.12026354162526331,
-                "stddev": 0.014962843334131603,
-                "rounds": 8,
-                "median": 0.12234607150094234,
-                "iqr": 0.026620709999406245,
-                "q1": 0.10599663100038015,
-                "q3": 0.1326173409997864,
+                "median": 2.0263018570040003,
+                "iqr": 0.05299445774471678,
+                "q1": 1.9950878000036028,
+                "q3": 2.0480822577483195,
                 "iqr_outliers": 0,
-                "stddev_outliers": 3,
-                "outliers": "3;0",
-                "ld15iqr": 0.10082771999805118,
-                "hd15iqr": 0.13936052600183757,
-                "ops": 8.315071936896407,
-                "total": 0.9621083330021065,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 1.9428480770002352,
+                "hd15iqr": 2.0595883399946615,
+                "ops": 0.4957619191476649,
+                "total": 10.085486212003161,
                 "iterations": 1
             }
         }
     ],
-    "datetime": "2024-03-18T17:38:30.914853",
+    "datetime": "2024-03-18T19:49:34.045994",
     "version": "4.0.0"
 }

@@ -8,13 +8,21 @@ Benchmarks for `xclim` using the [`pytest-benchmark`](https://pypi.org/project/p
 
 ## Running benchmarks
 
+`workflow.sh` loops over all `test_*.py` files in `benchmarks` directory and its subdirectories. 
+
 ```bash
-script="my_script"
-script_args="--with-client True --chunk-size lat=50 lon=50 --nthreads 10 --max-mem 2GB"
-filename=`python3 conftest.py $script_args`
-pytest_args="--benchmark-save ${script}_${filename} -n0 --dist no"
-pytest  $pytest_args $script_args 
+script_args="--with-client True --chunk-size location=1 --nthreads 4 --max-mem 2GB --nworkers 3"
+bash workflow.sh $script_args
 ```
+A single benchmark on a `file` grossly in 
+```bash
+pytest_args="-n0 --dist no ${file}.py"
+pytest $pytest_args $script_args
+```
+
+## Output
+
+Every `test_*.py` has a corresponding directory in `output` where the benchmark are stored. 
 # Old pyperf implementation
 
 ## Description

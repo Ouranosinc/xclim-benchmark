@@ -6,13 +6,13 @@ from xclim import sdba
 
 dsr = open_dataset("sdba/CanESM2_1950-2100.nc")
 dsh = open_dataset("sdba/ahccd_1950-2013.nc"  )
-ref, hist = [ds.tasmax.sel(time=slice("1970", "2000")) for ds in [dsr, dsh]]
+ref0, hist0 = [ds.tasmax.sel(time=slice("1970", "2000")) for ds in [dsr, dsh]]
 
 @pytest.mark.parametrize("nquantiles", [20,50])
 def test_eqm(benchmark, request, nquantiles):
     kwargs, c = start_benchmark(request)
-    ref =  ref.chunk(kwargs["--chunk-size"])
-    hist = hist.chunk(kwargs["--chunk-size"])
+    ref =  ref0.chunk(kwargs["--chunk-size"])
+    hist = hist0.chunk(kwargs["--chunk-size"])
     def func():
         sdba.QuantileDeltaMapping.train(ref,hist, nquantiles=nquantiles).adjust(hist).compute()
     benchmark(func)    
@@ -21,8 +21,8 @@ def test_eqm(benchmark, request, nquantiles):
 @pytest.mark.parametrize("nquantiles", [20,50])
 def test_qdm(benchmark, request, nquantiles):
     kwargs, c = start_benchmark(request)
-    ref =  ref.chunk(kwargs["--chunk-size"])
-    hist = hist.chunk(kwargs["--chunk-size"])
+    ref =  ref0.chunk(kwargs["--chunk-size"])
+    hist = hist0.chunk(kwargs["--chunk-size"])
     def func():
         sdba.QuantileDeltaMapping.train(ref,hist, nquantiles=nquantiles).adjust(hist).compute()
     benchmark(func)    
