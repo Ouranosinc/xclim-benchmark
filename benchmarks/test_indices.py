@@ -1,9 +1,6 @@
 import pytest 
-import numpy as np
-import xarray as xr
 from conftest import get_kwargs
 from utils import start_benchmark, end_benchmark
-from pathlib import Path
 from xclim.testing import open_dataset
 from xclim import sdba
 import xclim.indices as xci

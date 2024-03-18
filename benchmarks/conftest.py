@@ -1,5 +1,6 @@
 import pytest
 
+# Parsing options
 kwargs = {
     '--with-client': dict(type=bool, help='whether to use a dask client'),
     '--chunk-size': dict(type=str, nargs='*', help='which function to run'),
@@ -7,21 +8,18 @@ kwargs = {
     '--nthreads': dict(default=4, type=int, help='When using a dask client, number of threads per worker'),
     '--max-mem': dict(default='2GB', help='When using a dask client, memory limit'),
 }
-keys = list(kwargs.keys())
-
-def get_kwargs(request):
-    kwargs = {}
-    for k in keys:
-        kwargs[k] = request.config.getoption(k)
-        if k == '--chunk-size':
-            kwargs[k] = {arg.split("=")[0]:int(arg.split("=")[1]) for arg in kwargs[k] or []}
-    return kwargs
-
-
 
 def pytest_addoption(parser):
     for k in kwargs.keys():
         parser.addoption(k, **kwargs[k])
+
+def get_kwargs(request):
+    """Convert parser.addoption arguments to a dictonary"""
+    for k in kwargs.keys():
+        kwargs[k] = request.config.getoption(k)
+        if k == '--chunk-size':
+            kwargs[k] = {arg.split("=")[0]:int(arg.split("=")[1]) for arg in kwargs[k] or []}
+    return kwargs
 
 if __name__ == "__main__":
     import argparse
