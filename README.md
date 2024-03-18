@@ -1,3 +1,22 @@
+# pytest implementation 
+
+## Description
+
+Benchmarks for `xclim` using the [`pytest-benchmark`](https://pypi.org/project/pytest-benchmark/).
+
+# Usage 
+
+## Running benchmarks
+
+```bash
+script="my_script"
+script_args="--with-client True --chunk-size lat=50 lon=50 --nthreads 10 --max-mem 2GB"
+filename=`python3 conftest.py $script_args`
+pytest_args="--benchmark-save ${script}_${filename} -n0 --dist no"
+pytest  $pytest_args $script_args 
+```
+# Old pyperf implementation
+
 ## Description
 
 Benchmarks for `xclim` using the [`pyperf`](https://pyperf.readthedocs.io/en/latest/) package or the [`memory_profiles`](https://pypi.org/project/memory-profiler/) package.
